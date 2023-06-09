@@ -1,0 +1,104 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress AdCompose OpenAI Generator\n"
+"POT-Creation-Date: 2023-06-09 23:04+0200\n"
+"PO-Revision-Date: 2023-06-09 23:04+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: adcompose-openai.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: adcompose-openai.php:32 adcompose-openai.php:112
+msgid "Please fill all the fields"
+msgstr ""
+
+#: adcompose-openai.php:33
+msgid "There was an error:"
+msgstr ""
+
+#: adcompose-openai.php:55
+msgid ""
+"Error: OpenAI API key not provided in the [adcompose] shortcode parameters."
+msgstr ""
+
+#: adcompose-openai.php:56
+msgid ""
+"Error: Please provide a valid OpenAI API key as a parameter in the shortcode."
+msgstr ""
+
+#: adcompose-openai.php:67
+msgid "Welcome to AdCompose"
+msgstr ""
+
+#: adcompose-openai.php:68
+msgid "Get promotional copy for your products fast!"
+msgstr ""
+
+#: adcompose-openai.php:71
+msgid "Product Name:"
+msgstr ""
+
+#: adcompose-openai.php:73
+msgid "Product Description:"
+msgstr ""
+
+#: adcompose-openai.php:75
+msgid "Target Market:"
+msgstr ""
+
+#: adcompose-openai.php:77
+msgid "Generate Copy"
+msgstr ""
+
+#: adcompose-openai.php:81
+msgid "Your Advertising Copy:"
+msgstr ""
+
+#: adcompose-openai.php:117
+#, php-format
+msgid ""
+"Create max 50 words of an advertising copy for a product. Use Product Name "
+"\"%s\", Description \"%s\", Target Market \"%s\""
+msgstr ""
+
+#: adcompose-openai.php:143
+msgid "Error:"
+msgstr ""
+
+#: adcompose-openai.php:155
+msgid "There was a problem with the AI generation. Please try again."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WordPress AdCompose OpenAI Generator"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/ginirator/wordpress-plugin-adcompose-openai"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin uses the OpenAI API to generate promotional copy for products."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Valeriu Dodon"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid ""
+"https://ginirator.com/online-tools/adcompose-fast-promotional-copy-generator/"
+msgstr ""
