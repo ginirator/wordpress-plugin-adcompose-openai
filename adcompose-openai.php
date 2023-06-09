@@ -9,8 +9,6 @@ Author URI: https://ginirator.com/online-tools/adcompose-fast-promotional-copy-g
 License: GPL2
 */
 
-require_once __DIR__ . '/vendor/autoload.php';
-
 function adcompose_openai_scripts() {
 	// Use plugins_url() function to include your style file from your plugin.
     wp_enqueue_style('adcompose_styles', plugins_url('assets/css/styles.css', __FILE__));
@@ -26,44 +24,60 @@ function adcompose_openai_scripts() {
 }
 add_action('wp_enqueue_scripts', 'adcompose_openai_scripts');
 
-function adcompose_openai_form() {
-    ob_start();
-    ?>
+function adcompose_openai_form($atts = []) {
+    // Normalize attribute keys, lowercase
+    $atts = array_change_key_case((array)$atts, CASE_LOWER);
 
-    <div id="adcompose-wrapper">
-		<h3>Welcome to AdCompose</h3>
-		<p>Get promotional copy for your products fast!</p>
+    // Override default attributes with user attributes
+    $adcompose_atts = shortcode_atts([
+        'apikey' => '',
+        'model' => 'text-davinci-003',
+        'maxtokens' => 100,
+    ], $atts);
 
-		<form id="ad-input">
-			<label for="name">Product Name:</label>
-			<input type="text" id="productName" name="productName">
-			<label for="desc">Product Description:</label>
-			<input type="text" id="productDesc" name="productDesc">
-			<label for="target">Target Market:</label>
-			<input type="text" id="productTarget" name="productTarget">
-			<button type="submit" id="submit-button">Generate Copy</button>
-		</form>
+	if ( empty($adcompose_atts['apikey']) ) {
+		error_log('Error: OpenAI API key not provided in the [adcompose] shortcode parameters.');
+		echo '<p style="color: red;">Error: Please provide a valid OpenAI API key as a parameter in the shortcode.</p>';
+	} else {
+		// Store the attributes as an option
+		update_option('adcompose_openai_atts', $adcompose_atts);
+		ob_start();
+		?>
 
-		<div id="ad-output">
-			<h3>Your Advertising Copy:</h3>
-			<p id="ad-output-copy" class="generatedContent"></p>
+		<div id="adcompose-wrapper">
+			<h3>Welcome to AdCompose</h3>
+			<p>Get promotional copy for your products fast!</p>
+
+			<form id="ad-input">
+				<label for="name">Product Name:</label>
+				<input type="text" id="productName" name="productName">
+				<label for="desc">Product Description:</label>
+				<input type="text" id="productDesc" name="productDesc">
+				<label for="target">Target Market:</label>
+				<input type="text" id="productTarget" name="productTarget">
+				<button type="submit" id="submit-button">Generate Copy</button>
+			</form>
+
+			<div id="ad-output">
+				<h3>Your Advertising Copy:</h3>
+				<p id="ad-output-copy" class="generatedContent"></p>
+			</div>
 		</div>
-	</div>
 
-	<div id="ad-output"></div>
+		<div id="ad-output"></div>
 
-    <?php
-    return ob_get_clean();
+		<?php
+		return ob_get_clean();
+	}
 }
 add_shortcode('adcompose', 'adcompose_openai_form');
 
 function adcompose_openai_handle_request() {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-	$dotenv->load();
-
-	$apiKey = $_ENV['OPENAI_API_KEY'];
-	$apiModel = $_ENV['OPENAI_MODEL'];
-	$apiMaxTokens = intval($_ENV['OPENAI_MAX_TOKENS']);
+    // Retrieve the global parameters
+    $adcompose_openai_global_atts = get_option('adcompose_openai_atts', array());
+    $apiKey = $adcompose_openai_global_atts['apikey'];
+    $apiModel = $adcompose_openai_global_atts['model'];
+    $apiMaxTokens = intval($adcompose_openai_global_atts['maxtokens']);
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

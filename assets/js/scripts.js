@@ -22,7 +22,7 @@ jQuery(document).ready(function ($) {
 				action: 'adcompose_openai_handle_request',
 				productName: productName,
 				productDesc: productDesc,
-				productTarget: productTarget
+				productTarget: productTarget,
 			},
 			success: function(data) {
 				$('#ad-input').attr('style', 'display: none;');
